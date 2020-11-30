@@ -2,25 +2,23 @@ module Enumerable
 
 def my_each
     return to_enum(:my_each) unless block_given?
-    arr = self.to_a        
-    
+    arr = self.to_a
             arr.length.times do |i|
                 yield(arr[i]) 
             end
-    #puts self
-
+    self
 end
 
 def my_each_with_index
+    return to_enum(:my_each) unless block_given?
+
     arr = self.to_a
 
-switch = true
-    while switch
         switch = false
             arr.length.times do |i|
-                yield(arr[i], i) if block_given?  
+                yield(arr[i], i) 
             end
-    end 
+    
 end
 
 def my_select

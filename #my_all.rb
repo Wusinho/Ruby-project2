@@ -30,5 +30,13 @@ def my_all?(arr)
    #[].my_all? #=> true
 
    
-puts .my_all?([1, 2i, 3.14]) {(Numeric)}    #=> true
+#puts .my_all?([1, 2i, 3.14]) {(Numeric)}    #=> true
+
+class Perro
+    def meow
+      puts self
+    end
+  end
+  
+  Perro.new.meow
   
