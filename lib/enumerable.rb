@@ -31,8 +31,41 @@ def my_select
 end 
   
 
+def my_all?(param = nil)
+    if block_given?
+      to_a.my_each { |item| return false if yield(item) == false }
+      puts "1era condicional"
+        
+
+    elsif param.nil?
+      to_a.my_each { |item| return false if item.nil? || item == false }
+         puts "2da condicional"
+
+     elsif !param.nil? && (param.is_a? Class)
+       to_a.my_each { |item| return false unless [item.class, item.class.superclass].include?(param) }
+       puts "3ra condicional"
+       
+     elsif !param.nil? && param.class == Regexp
+         puts "4ta condicional"
+       to_a.my_each { |item| return false unless param.match(item) }
+
+     else
+         puts "5ta condicional"
+       to_a.my_each { |item| return false if item != param }
+
+     end
+
+    puts "6ta condicional"
+
+    true
+  end
 
 
+=begin
+    
+rescue => exception
+    
+end
 def my_all?
 arr = self.to_a
 
@@ -54,22 +87,9 @@ arr = self.to_a
     
   end
       
-     
-  #puts %w[ant bear cat].my_all?(/t/)
+=end   
+  
     
-      
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

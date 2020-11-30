@@ -18,7 +18,5 @@ def my_select(arr)
     end
     
        
-    my_select(array) do |a|
-          a < 3
-    end
-    
+  
+    [array]

@@ -14,13 +14,14 @@ arr = (%w[Sharon Leo Leila Brian Arun].my_select { |friend| friend != 'Brian' })
 puts arr
 =end
 
-puts '4.--------my_all--------'
-[].my_all? #=> true
+#puts '4.--------my_all--------'
 
-(%w[ant bear cat].my_all? { |word| word.length >= 3 }) #=> true
-(%w[ant bear cat].my_all? { |word| word.length >= 4 }) #=> false
-#%w[ant bear cat].my_all?(/t/) #=> false
-#[1, 2i, 3.14].my_all?(Numeric) #=> true
+#puts (%w[ant bear cat].my_all? {  }) #=> true
+#puts (%w[ant bear catdff].my_all? { |word| word.length >= 3}) #=> false
+#puts %w[t t t].my_all?(/t/) #=> false
+#puts [1, 2i, 3.14].my_all?(String) #=> true
+#puts [].my_all? #=> true
+
 
 =begin
 
