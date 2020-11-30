@@ -7,14 +7,13 @@ puts '1.--------my_each--------'
 
 puts '2.--------my_each_with_index--------'
 %w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? }
-=end
 
 
 puts '3.--------my_select--------'
 arr = (%w[Sharon Leo Leila Brian Arun].my_select { |friend| friend != 'Brian' })
 puts arr
+=end
 
-=begin
 puts '4.--------my_all--------'
 [].my_all? #=> true
 
@@ -23,6 +22,7 @@ puts '4.--------my_all--------'
 #%w[ant bear cat].my_all?(/t/) #=> false
 #[1, 2i, 3.14].my_all?(Numeric) #=> true
 
+=begin
 
 puts '5.--------my_any--------'
 (%w[ant bear cat].my_any? { |word| word.length >= 3 }) #=> true
