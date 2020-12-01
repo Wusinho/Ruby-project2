@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 module Enumerable
   def my_each
@@ -16,8 +16,8 @@ module Enumerable
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
-    to_a.length.times do |i|
-      yield(to_a[i], i)
+    self.length.times do |i|
+      yield(self[i], i)
     end
     self
   end
@@ -90,27 +90,27 @@ module Enumerable
 
   def my_map(proc = nil)
     return to_enum unless block_given? || proc
-
     my_array = []
     if proc
-      my_each { |item| my_array << proc.call(item) }
+    my_each { |item| my_array << proc.call(item) }
     else
-      my_each { |item| my_array << yield(item) }
+    my_each { |item| my_array << yield(item) }
     end
     my_array
   end
 
+
   def my_inject(param = nil, operator = nil)
-    if block_given?
+     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
-    else
+       else
       if operator.nil?
         operator = param
         param = nil
       end
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
-    end
+       end
     puts param
+    end
   end
-end

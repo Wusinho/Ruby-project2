@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 module Enumerable
   def my_each
@@ -30,6 +30,7 @@ module Enumerable
     my_array
   end
 
+  rubocop disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
   def my_all?(param = nil)
     if block_given?
       my_each { |item| return false if yield(item) == false }
@@ -90,27 +91,28 @@ module Enumerable
 
   def my_map(proc = nil)
     return to_enum unless block_given? || proc
-
     my_array = []
     if proc
-      my_each { |item| my_array << proc.call(item) }
+    my_each { |item| my_array << proc.call(item) }
     else
-      my_each { |item| my_array << yield(item) }
+    my_each { |item| my_array << yield(item) }
     end
     my_array
   end
 
+
   def my_inject(param = nil, operator = nil)
-    if block_given?
+     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
-    else
+       else
       if operator.nil?
         operator = param
         param = nil
       end
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
-    end
+       end
     puts param
+    end
   end
-end
+  rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -16,8 +14,8 @@ module Enumerable
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
-    to_a.length.times do |i|
-      yield(to_a[i], i)
+    self.length.times do |i|
+      yield(self[i], i)
     end
     self
   end
@@ -90,27 +88,40 @@ module Enumerable
 
   def my_map(proc = nil)
     return to_enum unless block_given? || proc
-
     my_array = []
-    if proc
-      my_each { |item| my_array << proc.call(item) }
-    else
-      my_each { |item| my_array << yield(item) }
-    end
+    my_each { |item| my_array << yield(item) }
     my_array
   end
 
-  def my_inject(param = nil, operator = nil)
-    if block_given?
-      my_each { |item| param = param.nil? ? item : yield(param, item) }
+  def my_proc(_param = nil)
+    my_array = []
+    my_each { |item| my_array << yield(item) }
+    my_array
+  end
+
+  def my_map(proc = nil)
+    return to_enum unless block_given? || proc
+    new_arr = []
+    if proc
+      my_each { |item| new_arr << proc.call(item) }
     else
+      my_each { |item| new_arr << yield(item) }
+    end
+    new_arr
+  end
+ 
+
+  def my_inject(param = nil, operator = nil)
+     if block_given?
+      my_each { |item| param = param.nil? ? item : yield(param, item) }
+       else
       if operator.nil?
         operator = param
         param = nil
       end
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
-    end
+       end
     puts param
+    end
   end
-end

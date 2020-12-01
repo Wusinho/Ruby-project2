@@ -114,3 +114,4 @@ module Enumerable
     puts param
   end
 end
+rubocop enable Metrics / PerceivedComplexity, Metrics / CyclomaticComplexity
