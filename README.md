@@ -2,8 +2,6 @@
 
 This is the Ruby project #2, from the Microverse's main curriculum and aims to build a myriad of well-known algorithms built-in in Ruby, without using those methods.
 
-![screenshot](./assets/Ruby-pro_1.png)
-
 ## Built With
 
 - Ruby
@@ -14,7 +12,7 @@ This is the Ruby project #2, from the Microverse's main curriculum and aims to b
 
 - VS Code
 
-## Setup 
+## Setup
 
 - Install git
 
@@ -31,7 +29,6 @@ This is the Ruby project #2, from the Microverse's main curriculum and aims to b
 - Run ruby main.rb
 
 - To make any change,
-
 
 ## Author
 
