@@ -1,3 +1,5 @@
+# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity 
+
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -112,3 +114,4 @@ module Enumerable
     puts param
   end
 end
+# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity 
