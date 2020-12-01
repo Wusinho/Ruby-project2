@@ -45,7 +45,7 @@ arr = [1, 2, 4, 2]
 puts arr.my_count #=> 4
 puts arr.my_count(2) #=> 2
 puts (arr.my_count { |x| (x % 2).zero? }) #=> 3
-=end
+
 
 puts '8.--------my_maps--------'
 my_order = ['medium Big Mac', 'medium fries', 'medium milkshake']
@@ -53,10 +53,10 @@ puts (my_order.my_map { |item| item.gsub('medium', 'extra large') })
  puts ((0..5).my_map { |i| i * i })
 
 'my_map_proc'
-my_proc = proc { |i| i * i }
-(1..5).my_map(my_proc) { |i| i + i }
+puts my_proc = proc { |i| i * i }
+puts (1..5).my_map(my_proc) { |i| i + i }
+=end
 
-=begin
 
 puts '8.--------my_inject--------'
 ((1..5).my_inject { |sum, n| sum + n }) #=> 15
@@ -65,6 +65,7 @@ longest = %w[ant bear cat].my_inject do |memo, word|
   memo.length > word.length ? memo : word
 end
 puts longest #=> "bear"
+=begin
 
 puts 'multiply_els'
 puts multiply_els([2, 4, 5]) #=> 40

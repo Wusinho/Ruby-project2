@@ -103,8 +103,10 @@ def my_map (param = nil)
     myArray
 end
 
-def my_map_proc (param = nil)
-
+def my_proc (param = nil)
+    myArray = []   
+    my_each { |item| myArray << yield(item) }
+    myArray
 end
 
 #my_order = ['medium Big Mac', 'medium fries', 'medium milkshake']
