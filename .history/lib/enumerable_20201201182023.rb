@@ -101,16 +101,16 @@ module Enumerable
  
 
   def my_inject(param = nil, operator = nil)
-     if block_given?
+   if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
-       else
+     else
       if operator.nil?
         operator = param
         param = nil
       end
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
-       end
-    puts param
     end
+    puts param
   end
+end

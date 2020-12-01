@@ -1,0 +1,8 @@
+---
+BUNDLE_WITHOUT: "test:development"
+
+$ bundle install --without production
+require 'rubygems'
+require 'bundler'
+Bundler.setup(:default, :ci)
+require 'nokogiri'

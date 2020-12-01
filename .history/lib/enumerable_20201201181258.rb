@@ -14,8 +14,8 @@ module Enumerable
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
-    self.length.times do |i|
-      yield(self[i], i)
+    arr.length.times do |i|
+      yield(arr[i], i)
     end
     self
   end
@@ -31,6 +31,7 @@ module Enumerable
   def my_all?(param = nil)
     if block_given?
       my_each { |item| return false if yield(item) == false }
+      return true
     elsif param.nil?
       my_each { |item| return false if item.nil? || item == false }
     elsif !param.nil? && (param.is_a? Class)
@@ -39,6 +40,7 @@ module Enumerable
       my_each { |item| return false unless param.match(item) }
     else
       my_each { |item| return false if item != param }
+
     end
     true
   end
@@ -86,13 +88,13 @@ module Enumerable
     count
   end
 
-  def my_map(_param = nil)
+  def my_map(param = nil)
     my_array = []
     my_each { |item| my_array << yield(item) }
     my_array
   end
 
-  def my_proc(_param = nil)
+  def my_proc(param = nil)
     my_array = []
     my_each { |item| my_array << yield(item) }
     my_array
@@ -101,16 +103,16 @@ module Enumerable
  
 
   def my_inject(param = nil, operator = nil)
-     if block_given?
+    if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
-       else
+    else
       if operator.nil?
         operator = param
         param = nil
       end
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
-       end
-    puts param
     end
+    puts param
   end
+end

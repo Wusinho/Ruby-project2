@@ -110,7 +110,7 @@ module Enumerable
       end
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
-       end
-    puts param
     end
+    puts param
+  end
   end
