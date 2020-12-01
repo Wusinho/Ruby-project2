@@ -33,9 +33,9 @@ module Enumerable
       my_each { |item| return false if yield(item) == false }
     elsif param.nil?
       my_each { |item| return false if item.nil? || item == false }
-    elsif !param.nil? && (param.is_a? Class)
+    elsif param.is_a?(Class)
       my_each { |item| return false unless [item.class, item.class.superclass].include?(param) }
-    elsif !param.nil? && param.instance_of?(Regexp)
+    elsif param.is_a?(Regexp)
       my_each { |item| return false unless param.match(item) }
     else
       my_each { |item| return false if item != param }
