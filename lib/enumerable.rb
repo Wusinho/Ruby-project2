@@ -8,7 +8,7 @@ module Enumerable
         arr.length.times do |i|
             yield(arr[i]) 
         end
-    self
+    
   end
   
 
@@ -26,10 +26,10 @@ def my_select
   return to_enum(:my_select) unless block_given?
   arr = self.to_a
   myArray = []
-  arr.length.times do |i|
-    myArray << arr[i] if yield(arr[i])
-  end
-  puts myArray
+
+    my_each {|item| myArray << item if yield item }
+    myArray
+  
 end
 
 
@@ -85,22 +85,47 @@ end
 
 
 def my_count (param = nil)
-  arr = self.to_a
   count = 0
   if block_given?
     to_a.my_each { |item| count += 1 if yield item}
+    
   elsif !param.nil?
-    to_a.my_each { |item| count += 1 if item == param}
+    to_a.my_each { |item| count += 1 if item == param}    
   else
     to_a.my_each { |item| count += 1}
   end
   return count
 end
 
+def my_map (param = nil)
+    myArray = []   
+    my_each { |item| myArray << yield(item) }
+    myArray
+end
+
+def my_map_proc (param = nil)
+
+end
+
+#my_order = ['medium Big Mac', 'medium fries', 'medium milkshake']
+
+#puts my_order.map { |item| item.gsub('medium', 'extra large')}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end   
 
 
-  
-    
+
     
