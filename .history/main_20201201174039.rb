@@ -51,7 +51,8 @@ puts((0..5).my_map { |i| i * i })
 
 
 puts my_map = proc { |i| i * i }
-puts(1..5).my_map(my_proc) { |i| i + i }
+square = Proc.new {|x| x**2 }
+puts(1..5).my_map(gen_times) { |i| i + i }
 
 
 puts '8.--------my_inject--------'

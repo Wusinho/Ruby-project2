@@ -4,9 +4,9 @@ module Enumerable
     return to_enum(:my_each) unless block_given?
 
     i = 0
-    my_array = []
+    myArray = []
     while i < to_a.length
-      my_array[i] = yield to_a[i]
+      myArray[i] = yield to_a[i]
       i += 1
     end
     self
@@ -14,7 +14,6 @@ module Enumerable
 
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
-    arr = self.to_a
     arr.length.times do |i|
       yield(arr[i], i)
     end
@@ -24,9 +23,9 @@ module Enumerable
   def my_select
     return to_enum(:my_select) unless block_given?
 
-    my_array = []
-    my_each { |item| my_array << item if yield item }
-    my_array
+    myArray = []
+    my_each { |item| myArray << item if yield item }
+    myArray
   end
 
   def my_all?(param = nil)
@@ -81,6 +80,7 @@ module Enumerable
     count = 0
     if block_given?
       my_each { |item| count += 1 if yield item }
+
     elsif !param.nil?
       my_each { |item| count += 1 if item == param }
     else
@@ -89,19 +89,17 @@ module Enumerable
     count
   end
 
-  def my_map(param = nil)
-    my_array = []
-    my_each { |item| my_array << yield(item) }
-    my_array
+  def my_map(_param = nil)
+    myArray = []
+    my_each { |item| myArray << yield(item) }
+    myArray
   end
 
-  def my_proc(param = nil)
-    my_array = []
-    my_each { |item| my_array << yield(item) }
-    my_array
+  def my_proc(_param = nil)
+    myArray = []
+    my_each { |item| myArray << yield(item) }
+    myArray
   end
-
- 
 
   def my_inject(param = nil, operator = nil)
     if block_given?

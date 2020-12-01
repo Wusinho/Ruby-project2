@@ -101,8 +101,6 @@ module Enumerable
     my_array
   end
 
- 
-
   def my_inject(param = nil, operator = nil)
     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }

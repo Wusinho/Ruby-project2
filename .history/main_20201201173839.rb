@@ -49,9 +49,9 @@ my_order = ['medium Big Mac', 'medium fries', 'medium milkshake']
 puts(my_order.my_map { |item| item.gsub('medium', 'extra large') })
 puts((0..5).my_map { |i| i * i })
 
-
 puts my_map = proc { |i| i * i }
-puts(1..5).my_map(my_proc) { |i| i + i }
+square = Proc.new {|x| x**2 }
+puts(1..5).my_map(square) { |i| i + i }
 
 
 puts '8.--------my_inject--------'

@@ -95,11 +95,11 @@ module Enumerable
     my_array
   end
 
-  def my_proc(param = nil)
-    my_array = []
-    my_each { |item| my_array << yield(item) }
-    my_array
-  end
+  # def my_proc(param = nil)
+  #   my_array = []
+  #   my_each { |item| my_array << yield(item) }
+  #   my_array
+  # end
 
  
 

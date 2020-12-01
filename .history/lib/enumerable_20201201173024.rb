@@ -14,7 +14,7 @@ module Enumerable
 
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
-    arr = self.to_a
+
     arr.length.times do |i|
       yield(arr[i], i)
     end
@@ -89,19 +89,17 @@ module Enumerable
     count
   end
 
-  def my_map(param = nil)
+  def my_map(_param = nil)
     my_array = []
     my_each { |item| my_array << yield(item) }
     my_array
   end
 
-  def my_proc(param = nil)
+  def my_proc(_param = nil)
     my_array = []
     my_each { |item| my_array << yield(item) }
     my_array
   end
-
- 
 
   def my_inject(param = nil, operator = nil)
     if block_given?
