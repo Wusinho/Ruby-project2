@@ -1,16 +1,29 @@
 # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 module Enumerable
+=begin
   # # 1.my_each
   def my_each
-    return to_enum(:my_each_with_index) unless block_given?
+    return to_enum(:my_each) unless block_given?
+
     arr = self.to_a
+    
+
         arr.length.times do |i|
             yield(arr[i]) 
         end
-    
   end
-  
+=end
+  def my_each 
+    return to_enum(:my_each) unless block_given? 
+    i = 0 #
+    myArray = [] 
+    while i < to_a.length 
+         myArray[i] = yield to_a[i] 
+          i += 1 
+          end 
+          self
+    end 
 
 def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
@@ -21,17 +34,13 @@ def my_each_with_index
     self
 end
 
-
 def my_select
   return to_enum(:my_select) unless block_given?
   arr = self.to_a
   myArray = []
-
     my_each {|item| myArray << item if yield item }
     myArray
-  
 end
-
 
    def my_all?(param = nil)
     if block_given?
@@ -44,12 +53,10 @@ end
     elsif !param.nil? && param.class == Regexp
       my_each { |item| return false unless param.match(item) }
     else
-      my_each { |item| return false if item != param }
-      
+      my_each { |item| return false if item != param }    
     end
     true
   end
-
 
   def my_any?(param = nil)
     if block_given?
@@ -67,7 +74,6 @@ end
     false
   end
 
-
 def my_none? (param = nil)
   if block_given?
         my_each { |item| return false if yield(item)  == true }
@@ -82,7 +88,6 @@ def my_none? (param = nil)
    end
    true
 end
-
 
 def my_count (param = nil)
   count = 0
@@ -109,9 +114,9 @@ def my_proc (param = nil)
     myArray
 end
 
-#my_order = ['medium Big Mac', 'medium fries', 'medium milkshake']
-
-#puts my_order.map { |item| item.gsub('medium', 'extra large')}
+def my_inject(param = nil)
+   
+  end
 
 
 
