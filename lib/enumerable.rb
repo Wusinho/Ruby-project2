@@ -1,4 +1,4 @@
-rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+
 
 module Enumerable
   def my_each
@@ -114,4 +114,3 @@ module Enumerable
     puts param
   end
 end
-rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
