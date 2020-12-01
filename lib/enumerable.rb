@@ -29,9 +29,11 @@ module Enumerable
   end
 
   def my_all?(param = nil)
+    arr = self
     if block_given?
       my_each { |item| return false if yield(item) == false }
-    elsif param.nil?
+      return true
+    elsif !block_given? param.nil?
       my_each { |item| return false if item.nil? || item == false }
     elsif param.is_a?(Class)
       my_each { |item| return false unless [item.class, item.class.superclass].include?(param) }
