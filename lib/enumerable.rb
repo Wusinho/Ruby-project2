@@ -28,19 +28,17 @@ module Enumerable
     my_array
   end
 
-  def my_all?(arg = nil)
-    arr = self
+  def my_all?(param = nil)
     if block_given?
-      arr.my_each { |x| return false if yield(x) == false }
-      return true
-    elsif !block_given? && arg.nil?
-      arr.my_each { |x| return false if x.nil? || x == false }
-    elsif arg.is_a?(Class)
-      arr.my_each { |x| return false unless x.is_a?(arg) }
-    elsif arg.is_a?(Regexp)
-      arr.my_each { |x| return false unless arg.match(x) }
+      my_each { |item| return false if yield(item) == false }
+    elsif param.nil?
+      my_each { |item| return false if item.nil? || item == false }
+    elsif !param.nil? && (param.is_a? Class)
+      my_each { |item| return false unless [item.class, item.class.superclass].include?(param) }
+    elsif !param.nil? && param.instance_of?(Regexp)
+      my_each { |item| return false unless param.match(item) }
     else
-      arr.my_each { |x| return false if x != arg }
+      my_each { |item| return false if item != param }
     end
     true
   end
