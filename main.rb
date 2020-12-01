@@ -1,5 +1,5 @@
 require_relative 'lib/enumerable.rb'
-=begin
+#=begin
 puts '1.--------my_each--------'
 %w[Sharon Leo Leila Brian Arun].my_each { |friend| puts friend }
 
@@ -55,8 +55,9 @@ puts (my_order.my_map { |item| item.gsub('medium', 'extra large') })
 'my_map_proc'
 puts my_proc = proc { |i| i * i }
 puts (1..5).my_map(my_proc) { |i| i + i }
-=end
+#=end
 
+=begin
 
 puts '8.--------my_inject--------'
 ((1..5).my_inject { |sum, n| sum + n }) #=> 15
@@ -65,7 +66,6 @@ longest = %w[ant bear cat].my_inject do |memo, word|
   memo.length > word.length ? memo : word
 end
 puts longest #=> "bear"
-=begin
 
 puts 'multiply_els'
 puts multiply_els([2, 4, 5]) #=> 40

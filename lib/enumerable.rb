@@ -35,16 +35,16 @@ end
 
    def my_all?(param = nil)
     if block_given?
-      to_a.my_each { |item| return false if yield(item) == false }
+      my_each { |item| return false if yield(item) == false }
       return true
     elsif param.nil?
-      to_a.my_each { |item| return false if item.nil? || item == false }
+      my_each { |item| return false if item.nil? || item == false }
     elsif !param.nil? && (param.is_a? Class)
-      to_a.my_each { |item| return false unless [item.class, item.class.superclass].include?(param) }
+      my_each { |item| return false unless [item.class, item.class.superclass].include?(param) }
     elsif !param.nil? && param.class == Regexp
-      to_a.my_each { |item| return false unless param.match(item) }
+      my_each { |item| return false unless param.match(item) }
     else
-      to_a.my_each { |item| return false if item != param }
+      my_each { |item| return false if item != param }
       
     end
     true
@@ -53,16 +53,16 @@ end
 
   def my_any?(param = nil)
     if block_given?
-      to_a.my_each { |item| return true if yield(item) }
-      return false
+        my_each { |item| return true if yield(item) }
+        return false
     elsif param.nil?
-      to_a.my_each { |item| return true if item }
+        my_each { |item| return true if item }
     elsif !param.nil? && (param.is_a? Class)
-      to_a.my_each { |item| return true if [item.class, item.class.superclass].include?(param) }
+        my_each { |item| return true if [item.class, item.class.superclass].include?(param) }
     elsif !param.nil? && param.class == Regexp
-      to_a.my_each { |item| return true if param.match(item) }
+        my_each { |item| return true if param.match(item) }
     else
-      to_a.my_each { |item| return true if item == param }
+        my_each { |item| return true if item == param }
     end
     false
   end
@@ -70,15 +70,15 @@ end
 
 def my_none? (param = nil)
   if block_given?
-        to_a.my_each { |item| return false if yield(item)  == true }
+        my_each { |item| return false if yield(item)  == true }
     elsif param.nil?
-        to_a.my_each { |item| return false if item == true }
+        my_each { |item| return false if item == true }
      elsif !param.nil? && (param.is_a? Class)
-         to_a.my_each { |item| return false if [item.class, item.class.superclass].include?(param) }
+        my_each { |item| return false if [item.class, item.class.superclass].include?(param) }
     elsif !param.nil? && param.class == Regexp
-      to_a.my_each { |item| return true unless param.match(item) }
+        my_each { |item| return true unless param.match(item) }
     else
-     to_a.my_each { |item| return true unless item == param }
+        my_each { |item| return true unless item == param }
    end
    true
 end
@@ -87,24 +87,24 @@ end
 def my_count (param = nil)
   count = 0
   if block_given?
-    to_a.my_each { |item| count += 1 if yield item}
+    my_each { |item| count += 1 if yield item}
     
   elsif !param.nil?
-    to_a.my_each { |item| count += 1 if item == param}    
+    my_each { |item| count += 1 if item == param}    
   else
-    to_a.my_each { |item| count += 1}
+    my_each { |item| count += 1}
   end
   return count
 end
 
 def my_map (param = nil)
-    myArray = []   
+  myArray = []
     my_each { |item| myArray << yield(item) }
     myArray
 end
 
 def my_proc (param = nil)
-    myArray = []   
+  myArray = []
     my_each { |item| myArray << yield(item) }
     myArray
 end
