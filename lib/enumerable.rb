@@ -31,16 +31,16 @@ module Enumerable
   def my_all?(param = nil)
     arr = self
     if block_given?
-      my_each { |item| return false if yield(item) == false }
+      arr.my_each { |x| return false if yield(x) == false }
       return true
     elsif !block_given? param.nil?
-      my_each { |item| return false if item.nil? || item == false }
+      arr.my_each { |x| return false if x.nil? || x == false }
     elsif param.is_a?(Class)
-      my_each { |item| return false unless [item.class, item.class.superclass].include?(param) }
+      arr.my_each { |x| return false unless x.is_a?(param) }
     elsif param.is_a?(Regexp)
-      my_each { |item| return false unless param.match(item) }
+      arr.my_each { |x| return false unless param.match(x) }
     else
-      my_each { |item| return false if item != param }
+      arr.my_each { |x| return false if item != param }
     end
     true
   end
