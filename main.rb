@@ -1,7 +1,4 @@
-# frozen_string_literal: true
-
 require_relative 'lib/enumerable'
-#=begin
 puts '1.--------my_each--------'
 %w[Sharon Leo Leila Brian Arun].my_each { |friend| puts friend }
 
@@ -38,7 +35,7 @@ puts '6.--------my_none--------'
 [nil, false].my_none? #=> true
 [nil, false, true].my_none? #=> false
 
-# puts '7.--------my_count--------'
+puts '7.--------my_count--------'
 arr = [1, 2, 4, 2]
 puts arr.my_count #=> 4
 puts arr.my_count(2) #=> 2
@@ -59,7 +56,3 @@ puts '8.--------my_inject--------'
 puts %w[ant bear cat].my_inject do |memo, word|
   memo.length > word.length ? memo : word
 end
-
-# puts 'multiply_els'
-# puts multiply_els([2, 4, 5]) #=> 40
-# #
