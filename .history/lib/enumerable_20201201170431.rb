@@ -120,11 +120,16 @@ def my_inject(param = nil, operator = nil)
   else
     puts "condicional 2"
     if operator.nil?
-      operator = param
-      param = nil
+      operator = param.to_sym
     end
-    operator = operator.to_sym
-    my_each { |item| param = param.nil? ? item : param.send(operator, item) }
+    my_each { |item| param = param.nil? ? item : param.send(param, item) }
+    puts sym
+    else
+      initial = param
+      sym = param2.to_sym
+
+    puts sym
+  end
   end
     puts param
 end

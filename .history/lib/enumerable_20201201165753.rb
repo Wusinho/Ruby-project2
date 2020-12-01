@@ -113,18 +113,23 @@ module Enumerable
 
 
 
-def my_inject(param = nil, operator = nil)
+def my_inject(param = nil, param2 = nil)
   if block_given?
     puts "condicional 1"
     my_each { |item| param = param.nil? ? item : yield(param, item) }
   else
     puts "condicional 2"
-    if operator.nil?
-      operator = param
-      param = nil
-    end
-    operator = operator.to_sym
-    my_each { |item| param = param.nil? ? item : param.send(operator, item) }
+    if param2.nil?
+      sym = param.to_sym
+    my_each { |item| sym.send(sym, item)}
+    puts sym
+    else
+      initial = param
+      sym = param2.to_sym
+    my_each { |item| item.send(sym, )}
+
+    puts sym
+  end
   end
     puts param
 end

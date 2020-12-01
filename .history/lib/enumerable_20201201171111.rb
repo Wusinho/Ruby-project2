@@ -113,21 +113,21 @@ module Enumerable
 
 
 
-def my_inject(param = nil, operator = nil)
-  if block_given?
-    puts "condicional 1"
-    my_each { |item| param = param.nil? ? item : yield(param, item) }
-  else
-    puts "condicional 2"
-    if operator.nil?
-      operator = param
-      param = nil
-    end
-    operator = operator.to_sym
-    my_each { |item| param = param.nil? ? item : param.send(operator, item) }
-  end
-    puts param
-end
+# def my_inject(param = nil, operator = nil)
+#   if block_given?
+#     puts "condicional 1"
+#     my_each { |item| param = param.nil? ? item : yield(param, item) }
+#   else
+#     puts "condicional 2"
+#     if operator.nil?
+#       operator = param
+#       param = nil
+#     end
+#     operator = operator.to_sym
+#     my_each { |item| param = param.nil? ? item : param.send(operator, item) }
+#   end
+#     puts param
+# end
 
 
     # if !param[0].nil? && param[1].is_a? Symbol 
