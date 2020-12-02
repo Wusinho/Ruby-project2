@@ -4,11 +4,9 @@ module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
 
-    i = 0
-    my_array = []
-    while i < to_a.length
-      my_array[i] = yield to_a[i]
-      i += 1
+    arr = self.to_a
+    arr.length.times do |i|
+      yield (arr[i]) 
     end
     self
   end
@@ -63,20 +61,15 @@ module Enumerable
 
   def my_none?(param = nil)
     if block_given?
-      puts "cond 1"
       my_each { |item| return false if yield(item) == true }
     elsif param.nil?
-      puts "cond 2"
       my_each { |item| return false if item == true }
     elsif !param.nil? && (param.is_a? Class)
-      puts "cond 3"
       my_each { |item| return false if [item.class, item.class.superclass].include?(param) }
     elsif !param.nil? && param.instance_of?(Regexp)
-      puts "cond 4"
-      my_each { |item| return false unless param.match(item) }
+      my_each { |item| return false if param.match(item) }
     else
-      puts "cond 5"
-      my_each { |item| return false unless item == param }
+      my_each { |item| return true unless item == param }
     end
     true
   end
@@ -106,17 +99,23 @@ module Enumerable
   end
 
   def my_inject(param = nil, operator = nil)
+    raise LocalJumpError if param.nil? && !block_given? 
     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
     else
       if operator.nil?
         operator = param
         param = nil
-      end
+      else
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
+      end
     end
     param
   end
+end
+
+def multiply_els(arr)
+  arr.my_inject(1, '*')
 end
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
