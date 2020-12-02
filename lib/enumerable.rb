@@ -63,15 +63,20 @@ module Enumerable
 
   def my_none?(param = nil)
     if block_given?
+      puts "cond 1"
       my_each { |item| return false if yield(item) == true }
     elsif param.nil?
+      puts "cond 2"
       my_each { |item| return false if item == true }
     elsif !param.nil? && (param.is_a? Class)
+      puts "cond 3"
       my_each { |item| return false if [item.class, item.class.superclass].include?(param) }
     elsif !param.nil? && param.instance_of?(Regexp)
-      my_each { |item| return true unless param.match(item) }
+      puts "cond 4"
+      my_each { |item| return false unless param.match(item) }
     else
-      my_each { |item| return true unless item == param }
+      puts "cond 5"
+      my_each { |item| return false unless item == param }
     end
     true
   end
@@ -111,7 +116,7 @@ module Enumerable
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
     end
-    puts param
+    param
   end
 end
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
