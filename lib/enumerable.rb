@@ -3,10 +3,11 @@
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
-
-    arr = self.to_a
-    self.length.times do |i|
-      yield (self[i]) 
+    i = 0
+    my_array = []
+    while i < to_a.length
+      my_array[i] = yield to_a[i]
+      i += 1
     end
     self
   end
