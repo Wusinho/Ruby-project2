@@ -101,7 +101,7 @@ module Enumerable
   end
 
   def my_inject(param = nil, operator = nil)
-    raise LocalJumpError if param.nil? && !block_given?
+    # raise LocalJumpError if param.nil? && !block_given?
 
     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
@@ -113,7 +113,7 @@ module Enumerable
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
     end
-  param
+   param
   end
 end
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity

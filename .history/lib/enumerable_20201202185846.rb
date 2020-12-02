@@ -105,15 +105,14 @@ module Enumerable
 
     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
-    else
-      if operator.nil?
-        operator = param
-        param = nil
-      end
+    elsif operator.nil? && !block_given?
+      operator = param
+      param = nil
+    end
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
     end
-  param
+    param
   end
 end
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity

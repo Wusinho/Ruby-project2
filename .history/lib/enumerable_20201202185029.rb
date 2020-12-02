@@ -105,19 +105,19 @@ module Enumerable
 
     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
-    else
+    else 
       if operator.nil?
-        operator = param
-        param = nil
-      end
+      operator = param
+      param = nil
+    else
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
     end
-  param
+    param
   end
 end
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
-def multiply_els(arr)
-  arr.my_inject(1, '*')
-end
+# def multiply_els(arr)
+#   arr.my_inject(1, '*')
+# end

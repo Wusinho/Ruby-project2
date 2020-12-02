@@ -107,15 +107,15 @@ module Enumerable
       my_each { |item| param = param.nil? ? item : yield(param, item) }
     else
       if operator.nil?
-        operator = param
-        param = nil
+          operator = param
+          param = nil
+        end
+        operator = operator.to_sym
+        my_each { |item| param = param.nil? ? item : param.send(operator, item) }
       end
-      operator = operator.to_sym
-      my_each { |item| param = param.nil? ? item : param.send(operator, item) }
+      puts param
     end
-  param
   end
-end
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 def multiply_els(arr)
