@@ -71,7 +71,7 @@ module Enumerable
     elsif !param.nil? && param.instance_of?(Regexp)
       my_each { |item| return false if param.match(item) }
     else
-      my_each { |item| return false if item == param }
+      my_each { |item| return false unless item == param }
     end
     true
   end
@@ -114,7 +114,7 @@ module Enumerable
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
     end
     param
-  end
+    end
 end
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/ModuleLength
 

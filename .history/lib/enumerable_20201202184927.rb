@@ -1,4 +1,4 @@
-# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/ModuleLength
+# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 module Enumerable
   def my_each
@@ -71,7 +71,7 @@ module Enumerable
     elsif !param.nil? && param.instance_of?(Regexp)
       my_each { |item| return false if param.match(item) }
     else
-      my_each { |item| return false if item == param }
+      my_each { |item| return false unless item == param }
     end
     true
   end
@@ -103,6 +103,7 @@ module Enumerable
   def my_inject(param = nil, operator = nil)
     raise LocalJumpError if param.nil? && !block_given?
 
+ def my_inject(param = nil, operator = nil)
     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
     else
@@ -113,10 +114,10 @@ module Enumerable
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
     end
-    param
+    puts param
   end
 end
-# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/ModuleLength
+# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 def multiply_els(arr)
   arr.my_inject(1, '*')

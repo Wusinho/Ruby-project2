@@ -1,4 +1,4 @@
-# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/ModuleLength
+# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 module Enumerable
   def my_each
@@ -70,8 +70,9 @@ module Enumerable
       my_each { |item| return false if [item.class, item.class.superclass].include?(param) }
     elsif !param.nil? && param.instance_of?(Regexp)
       my_each { |item| return false if param.match(item) }
+    elsif !param.nil
     else
-      my_each { |item| return false if item == param }
+      my_each { |item| return true unless item == param }
     end
     true
   end
@@ -105,18 +106,17 @@ module Enumerable
 
     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
+    elsif operator.nil?
+      operator = param
+      param = nil
     else
-      if operator.nil?
-        operator = param
-        param = nil
-      end
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
     end
     param
   end
 end
-# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/ModuleLength
+# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 def multiply_els(arr)
   arr.my_inject(1, '*')

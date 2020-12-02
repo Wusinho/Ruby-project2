@@ -71,7 +71,7 @@ module Enumerable
     elsif !param.nil? && param.instance_of?(Regexp)
       my_each { |item| return false if param.match(item) }
     else
-      my_each { |item| return false if item == param }
+      my_each { |item| return false unless item == param }
     end
     true
   end
