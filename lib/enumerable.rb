@@ -105,14 +105,12 @@ module Enumerable
 
     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
-    else
-      if operator.nil?
+      elsif operator.nil?
         operator = param
         param = nil
       else
       operator = operator.to_sym
       my_each { |item| param = param.nil? ? item : param.send(operator, item) }
-      end
     end
     param
   end
