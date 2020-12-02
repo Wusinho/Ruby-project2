@@ -5,8 +5,8 @@ module Enumerable
     return to_enum(:my_each) unless block_given?
 
     arr = self.to_a
-    arr.length.times do |i|
-      yield (arr[i]) 
+    self.length.times do |i|
+      yield (self[i]) 
     end
     self
   end
@@ -99,7 +99,8 @@ module Enumerable
   end
 
   def my_inject(param = nil, operator = nil)
-    raise LocalJumpError if param.nil? && !block_given? 
+    raise LocalJumpError if param.nil? && !block_given?
+
     if block_given?
       my_each { |item| param = param.nil? ? item : yield(param, item) }
     else
